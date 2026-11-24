@@ -1,0 +1,76 @@
+/* Agento colours for the status page, matching www.agento.au.
+   Follows the visitor's light or dark setting, as the website does. */
+
+html:root {
+  --body-background-color: #f8fcfd;
+  --body-text-color: #0f172a;
+  --card-background-color: #ffffff;
+  --nav-background-color: #ffffff;
+  --nav-border-bottom-color: #cfe6ec;
+  --nav-current-border-bottom-color: #0097b2;
+  --card-border-color: #cfe6ec;
+  --down-border-left-color: #e11d48;
+  --down-background-color: #ffe4e6;
+  --degraded-border-left-color: #f59e0b;
+  --up-border-left-color: #0097b2;
+  --tag-color: #ffffff;
+  --tag-up-background-color: #0b7f97;
+  --tag-down-background-color: #e11d48;
+  --tag-degraded-background-color: #b45309;
+  --change-background-color: #f59e0b;
+  --error-button-border-color: #0b7f97;
+  --error-button-background-color: #0097b2;
+  --error-button-color: #ffffff;
+  --submit-button-border-color: #0b7f97;
+  --submit-button-background-color: #0097b2;
+  --submit-button-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:root {
+    --body-background-color: #0b1220;
+    --body-text-color: #e2e8f0;
+    --card-background-color: #111c2e;
+    --nav-background-color: #0d1626;
+    --nav-border-bottom-color: #1e2d44;
+    --nav-current-border-bottom-color: #22d3ee;
+    --card-border-color: #1e2d44;
+    --down-border-left-color: #fb7185;
+    --down-background-color: #4c0519;
+    --degraded-border-left-color: #fbbf24;
+    --up-border-left-color: #22d3ee;
+    --tag-color: #06202a;
+    --tag-up-background-color: #22d3ee;
+    --tag-down-background-color: #fb7185;
+    --tag-degraded-background-color: #fbbf24;
+    --change-background-color: #fbbf24;
+  }
+}
+
+body {
+  font-family: Inter, "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+h1, h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+article {
+  border-radius: 0.75rem;
+}
+
+.tag {
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-weight: 600;
+}
+
+nav .logo div {
+  font-weight: 700;
+}
+
+.submit-button {
+  background: #0097b2;
+  border-radius: 999px;
+}
