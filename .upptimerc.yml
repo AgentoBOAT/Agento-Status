@@ -1,31 +1,26 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+owner: AgentoBOAT
+repo: status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Website
+    url: https://www.agento.au
+  - name: Platform
+    url: https://app.agento.au
+  - name: API
+    url: https://api.agento.au/api/health
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.agento.au
+  logoUrl: https://www.agento.au/agento-icon.svg
+  name: Agento Status
+  introTitle: "Agento service status"
+  introMessage: Live availability and response times for the Agento website, platform and API. Checked automatically every five minutes.
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: Agento
+      href: https://www.agento.au
+    - title: Security
+      href: https://www.agento.au/security
 
-# Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration
