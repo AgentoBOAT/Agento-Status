@@ -10,7 +10,14 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
-const [owner, repo] = (process.env.GITHUB_REPOSITORY || "AgentoBOAT/status").split("/");
+// The page builds its cache keys from the owner and repo in .upptimerc.yml, so
+// the keys here must come from the same place. The repository's real name can
+// differ (it has been renamed), so the API calls use GITHUB_REPOSITORY.
+const rc = readFileSync(".upptimerc.yml", "utf8");
+const owner = (rc.match(/^owner:\s*(\S+)/m) || [])[1];
+const repo = (rc.match(/^repo:\s*(\S+)/m) || [])[1];
+if (!owner || !repo) throw new Error("owner or repo missing from .upptimerc.yml");
+const apiRepo = process.env.GITHUB_REPOSITORY || `${owner}/${repo}`;
 const token = process.env.GITHUB_TOKEN || "";
 const OUT = "assets/incident-cache.js";
 
@@ -43,7 +50,7 @@ const slim = (issue) => ({
 
 async function list({ state, labels }) {
   const url =
-    `https://api.github.com/repos/${owner}/${repo}/issues` +
+    `https://api.github.com/repos/${apiRepo}/issues` +
     `?state=${state}&filter=all&sort=created&direction=desc&labels=${labels}`;
   const res = await fetch(url, {
     headers: {
