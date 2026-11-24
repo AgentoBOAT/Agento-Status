@@ -16,7 +16,7 @@ status-website:
   faviconSvg: https://www.agento.au/favicon.svg
   links:
     - rel: stylesheet
-      href: https://status.agento.au/assets/agento-theme.css
+      href: https://status.agento.au/agento-theme.css
   name: Agento Status
   introTitle: "Agento service status"
   introMessage: Live availability and response times for the Agento website, platform and API. Checked automatically every five minutes.
