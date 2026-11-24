@@ -1,0 +1,57 @@
+# Keeps assets/incident-cache.js up to date so the status page does not have to
+# ask the GitHub API for incidents from each visitor's browser (GitHub allows
+# only 60 such requests an hour per IP address).
+#
+# This file is ours, not part of the Upptime template.
+
+name: Incident Cache
+on:
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled, deleted]
+  issue_comment:
+    types: [created, deleted]
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: incident-cache
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  build:
+    name: Build incident cache
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: master
+          # A push made with the personal token starts the Static Site CI
+          # (it watches assets/**); a push with the default token would not.
+          token: ${{ secrets.GH_PAT || github.token }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build cache
+        run: node .github/scripts/build-incident-cache.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT || github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+      - name: Commit if changed
+        run: |
+          if [ -z "$(git status --porcelain assets/incident-cache.js)" ]; then
+            echo "No change"
+            exit 0
+          fi
+          git config user.name "Upptime Bot"
+          git config user.email "73812536+upptime-bot@users.noreply.github.com"
+          git add assets/incident-cache.js
+          git commit -m "Agento: Status || Update incident cache"
+          git pull --rebase
+          git push

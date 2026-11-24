@@ -17,6 +17,10 @@ status-website:
   links:
     - rel: stylesheet
       href: https://status.agento.au/agento-theme.css
+  # Loads the incident lists from this site before the page starts, so visitors'
+  # browsers do not call the GitHub API (60 requests an hour per IP address).
+  # The file is kept up to date by .github/workflows/incident-cache.yml.
+  customHeadHtml: '<script src="/incident-cache.js"></script>'
   name: Agento Status
   introTitle: "Agento service status"
   introMessage: Live availability and response times for the Agento website, platform and API. Checked automatically every five minutes.
